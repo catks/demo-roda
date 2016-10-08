@@ -3,25 +3,20 @@ require_relative '../spec_helper.rb'
 describe Champion do
 
   let(:all_champions){Champion.all}
-  let(:champion_attributes){[:id,:name,:title,:image]}
+  let(:required_attributes){[:id,:name,:title,:image]}
 
   it "has access to the API Key" do
     expect(ENV['API_KEY']).not_to be_nil
   end
 
-  it "has attributes" do
+  it "has the required attributes" do
     champion = Champion.sample
-    champion_attributes.each do |attribute|
+    required_attributes.each do |attribute|
       expect(champion.send(attribute).to_s).to match(/.+/)
     end
   end
 
-  it "fecth data from api" do
-    expect(Champion.response.code).to eq(200)
+  it_behaves_like "a api resource" do
+    let(:subject){Champion}
   end
-
-  it "return champions" do
-    expect(all_champions).to be_a Enumerable
-  end
-
 end

@@ -1,4 +1,5 @@
 require_relative 'api_resource'
+require 'json'
 
 class Item < ApiResource
   define_resource "https://global.api.pvp.net/api/lol/static-data/br/v1.2/item?api_key=#{ENV['API_KEY']}"
@@ -10,7 +11,6 @@ class Item < ApiResource
     @plaintext = plaintext
     @description = description
   end
-
 
   def self.parser(response)
     JSON.parse(response.body)['data'].map do |k,v|

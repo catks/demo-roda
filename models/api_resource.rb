@@ -4,7 +4,7 @@ class ApiResource
   extend Enumerable
   class << self
     def define_resource(resource)
-      define_singleton_method(:api_resource){resource}
+      self.define_singleton_method(:api_resource){resource}
     end
     def all
       parser(response)
@@ -19,11 +19,11 @@ class ApiResource
     end
 
     def fetch_champions
-      @@response = RestClient.get(api_resource)
+      @response = RestClient.get(api_resource)
     end
 
     def response
-      @@response ||= fetch_champions
+      @response ||= fetch_champions
     end
 
     def api_resource
