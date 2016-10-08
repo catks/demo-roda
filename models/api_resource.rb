@@ -6,12 +6,17 @@ class ApiResource
     def define_resource(resource)
       self.define_singleton_method(:api_resource){resource}
     end
+
     def all
       parser(response)
     end
 
     def each(&block)
       all.each(&block)
+    end
+
+    def find_by(**params)
+      params.map { |k,v| find{ |r| r.send(k) == v } }
     end
 
     def sample

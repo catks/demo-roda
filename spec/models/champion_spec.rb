@@ -2,6 +2,7 @@ require_relative '../spec_helper.rb'
 
 describe Champion do
 
+  let(:champion){Champion.sample}
   let(:all_champions){Champion.all}
   let(:required_attributes){[:id,:name,:title,:image]}
 
@@ -10,10 +11,23 @@ describe Champion do
   end
 
   it "has the required attributes" do
-    champion = Champion.sample
     required_attributes.each do |attribute|
       expect(champion.send(attribute).to_s).to match(/.+/)
     end
+  end
+
+  it "has modes" do
+    expect(champion.modes).not_to be_empty
+  end
+
+  it "has recommended items for a mode" do
+    random_mode = champion.modes.sample
+    expect(champion.items_for(random_mode)).not_to be_empty
+  end
+
+  it "load Items for a mode" do
+    random_mode = champion.modes.sample
+    expect(champion.load_items_for(random_mode)).to all( be_an(Item))
   end
 
   it_behaves_like "a api resource" do
