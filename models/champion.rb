@@ -1,10 +1,9 @@
-require 'rest-client'
+require_relative 'api_resource'
 require 'json'
-class Champion
-  API_CHAMPIONS = "https://global.api.pvp.net/api/lol/static-data/br/v1.2/champion?champData=image&api_key=#{ENV['API_KEY']}"
-  CHAMPION_IMAGE_CDN = "http://ddragon.leagueoflegends.com/cdn/6.19.1/img/champion/"
-  extend Enumerable
 
+class Champion < ApiResource
+  CHAMPION_IMAGE_CDN = "http://ddragon.leagueoflegends.com/cdn/6.19.1/img/champion/"
+  define_resource "https://global.api.pvp.net/api/lol/static-data/br/v1.2/champion?champData=image&api_key=#{ENV['API_KEY']}"
   attr_reader :id,:name,:title,:image
 
   def initialize(id:,name:,title:,image:)
@@ -18,33 +17,9 @@ class Champion
     CHAMPION_IMAGE_CDN + @image
   end
 
-  #Class Methods
-  class << self
-    def all
-      parser(response)
-    end
-
-    def each(&block)
-      all.each(&block)
-    end
-
-    def sample
-      all.sample
-    end
-
-    def fetch_champions
-      @@response = RestClient.get(API_CHAMPIONS)
-    end
-
-    def response
-      @@response ||= fetch_champions
-    end
-
-    private
-    def parser(response)
-      JSON.parse(response.body)['data'].map do |k,v|
-        Champion.new(id: v['id'],name: v['name'],title: v['title'],image: v.dig('image','full'))
-      end
+  def self.parser(response)
+    JSON.parse(response.body)['data'].map do |k,v|
+      Champion.new(id: v['id'],name: v['name'],title: v['title'],image: v.dig('image','full'))
     end
   end
 
