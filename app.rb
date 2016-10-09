@@ -27,6 +27,13 @@ class App < Roda
       end
     end
 
+    r.on 'items' do
+      @items = Item.all
+      r.get do
+        view('items')
+      end
+    end
+
   end
 
 end

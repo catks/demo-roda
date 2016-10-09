@@ -8,3 +8,9 @@
 .item-title {
     font-size: 30px
 }
+.items-list {
+    margin: 20px;
+}
+.item-list {
+    margin-top: 50px;
+}

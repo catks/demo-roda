@@ -3,17 +3,17 @@
 .champion-title
   = @champion.title
 
-
+%h5 Selecione o Modo e veja os itens recomendados:
 %ul
   -@champion.modes.each do |mode|
     %ul.collapsible{"data-collapsible" => "accordion"}
       %li
         .collapsible-header
           %h4= "Modo: #{mode.capitalize}"
-        .collapsible-body.items-list
-          %ul
+        .collapsible-body
+          %ul.items-list
             -@champion.load_items_for(mode).each do |item|
-              %li
+              %li.item-list
                 %span.item-title=item.name
                 %br
                 = item.description

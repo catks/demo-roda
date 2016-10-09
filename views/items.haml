@@ -1,0 +1,8 @@
+.row
+  - @items.each do |item|
+    .col.s4.m4
+      .card.small.item-card.smal.blue-grey.darken-1
+        .card-content.white-text
+          %span.card-title= item.name
+          %p
+            =item.plaintext
