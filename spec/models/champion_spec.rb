@@ -25,9 +25,9 @@ describe Champion do
     expect(champion.items_for(random_mode)).not_to be_empty
   end
 
-  it "load Items for a mode" do
+  it "load items for a mode" do
     random_mode = champion.modes.sample
-    expect(champion.load_items_for(random_mode)).to all( be_an(Item))
+    expect(champion.load_items_for(random_mode).first).to be_an(Item)
   end
 
   it_behaves_like "a api resource" do

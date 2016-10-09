@@ -1,6 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.4.0)
+    capybara (2.10.1)
+      addressable
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     coderay (1.1.1)
     diff-lcs (1.2.5)
     domain_name (0.5.20160826)
@@ -34,8 +42,11 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mini_portile2 (2.1.0)
     nenv (0.3.0)
     netrc (0.11.0)
+    nokogiri (1.6.8.1)
+      mini_portile2 (~> 2.1.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
@@ -44,6 +55,8 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     rack (2.0.1)
+    rack-test (0.6.3)
+      rack (>= 1.0)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
@@ -74,11 +87,14 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  capybara
   guard-rspec
   haml
   rest-client

@@ -11,7 +11,6 @@ describe Item do
 
   it "has required attributes" do
     item = Item.sample
-    puts item.inspect
     required_attributes.each do |attribute|
       expect(item.send(attribute).to_s).to match(/.+/)
     end

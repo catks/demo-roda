@@ -1,0 +1,7 @@
+
+%ul
+  - @champions.each do |champion|
+    %li
+      %label= champion.name
+      %img{src: champion.image_url}
+      %a{href:"/champion/#{champion.id}"} View More

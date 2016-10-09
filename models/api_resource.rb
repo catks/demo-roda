@@ -16,7 +16,7 @@ class ApiResource
     end
 
     def find_by(**params)
-      params.map { |k,v| find{ |r| r.send(k) == v } }
+      params.map { |k,v| find{ |r| r.send(k) == v } }.first
     end
 
     def sample

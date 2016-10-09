@@ -7,4 +7,5 @@ gem "rest-client"
 group :development, :test do
   gem "guard-rspec", require: false
   gem "rspec"
+  gem "capybara"
 end

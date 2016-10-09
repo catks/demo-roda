@@ -1,0 +1,14 @@
+%h1= @champion.name
+%img{src: @champion.image_url}
+Título:
+%label= @champion.title
+
+.modes
+  -@champion.modes.each do |mode|
+    %ul.mode
+      %h2= mode
+      -@champion.load_items_for(mode).each do |item|
+        %li
+          %h3=item.name
+          = item.description
+          =item.plaintext
