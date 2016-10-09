@@ -1,15 +1,20 @@
 %html
   %head
     %meta{ charset: "utf-8" }
-    %title Lolzinho
+    %title Lolzinho Champs
     = assets :css
     = assets :js
-    %body
-    .container
-      %h1
-        %a{ href: "/" } App
-      %nav
-        %a.button{ href: "/" } Home
-      %section.content
-        = yield
+  %body
+    %nav.purple.darken-1
+      .nav-wrapper
+        %a.brand-logo{:href => "/"} LoL Champs
+        %ul#nav-mobile.right.hide-on-med-and-down
+          %li
+            %a{:href => "/"} Campeões
+          %li
+            %a{:href => "/items"} Itens
+
+  .container
+    %section.content
+      = yield
 

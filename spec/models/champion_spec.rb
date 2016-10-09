@@ -27,7 +27,8 @@ describe Champion do
 
   it "load items for a mode" do
     random_mode = champion.modes.sample
-    expect(champion.load_items_for(random_mode).first).to be_an(Item)
+    all_items = RSpec::Matchers::BuiltIn::All #Fix all to reference all from RSpec not from Capybara
+    expect(champion.load_items_for(random_mode)).to all_items.new(be_an(Item))
   end
 
   it_behaves_like "a api resource" do
